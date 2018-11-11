@@ -6,19 +6,19 @@
 %define __provides_exclude_from ^.*\\.jar$
 
 Name:           activemq-dist
-Version:        5.15.4
+Version:        5.15.7
 Release:        1%{?dist}
 Summary:        ActiveMQ Messaging Broker
 Group:          Networking/Daemons
 License:        ASL 2.0
 URL:            http://activemq.apache.org/
 Source0:        http://ftp.halifax.rwth-aachen.de/apache/activemq/%{version}/%{pkgname}-%{version}-bin.tar.gz
-Source1:        activemq-conf
-Source2:        activemq.service
-Source3:        activemq.logrotate
-Patch0:         init.d.patch
-Patch1:         wrapper.conf.patch
-Patch2:         log4j.patch
+Source1:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq-conf
+Source2:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq.service
+Source3:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq.logrotate
+Patch0:         https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/init.d.patch
+Patch1:         https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/wrapper.conf.patch
+Patch2:         https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/log4j.patch
 BuildRoot:      %{_tmppath}/%{pkgname}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch: noarch
@@ -150,6 +150,9 @@ getent passwd %{project} >/dev/null || \
 %{_javadir}
 
 %changelog
+* Sun Nov 11 2018 Lars Kiesow <lkiesow@uos.de> 5.15.7-1
+- Update to 5.15.7
+
 * Wed May 30 2018 Lars Kiesow <lkiesow@uos.de> 5.15.2-1
 - Update to 5.15.4
 
