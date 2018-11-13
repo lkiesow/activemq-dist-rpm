@@ -12,7 +12,7 @@ Summary:        ActiveMQ Messaging Broker
 Group:          Networking/Daemons
 License:        ASL 2.0
 URL:            http://activemq.apache.org/
-Source0:        http://ftp.halifax.rwth-aachen.de/apache/activemq/%{version}/%{pkgname}-%{version}-bin.tar.gz
+Source0:        https://ftp.halifax.rwth-aachen.de/apache/activemq/%{version}/%{pkgname}-%{version}-bin.tar.gz
 Source1:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq-conf
 Source2:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq.service
 Source3:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq.logrotate
