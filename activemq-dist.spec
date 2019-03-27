@@ -6,7 +6,7 @@
 %define __provides_exclude_from ^.*\\.jar$
 
 Name:           activemq-dist
-Version:        5.15.8
+Version:        5.15.9
 Release:        1%{?dist}
 Summary:        ActiveMQ Messaging Broker
 Group:          Networking/Daemons
@@ -150,6 +150,9 @@ getent passwd %{project} >/dev/null || \
 %{_javadir}
 
 %changelog
+* Wed Mar 27 2019 Lars Kiesow <lkiesow@uos.de> - 5.15.9-1
+- Update to 5.15.9
+
 * Sat Dec 08 2018 Lars Kiesow <lkiesow@uos.de> - 5.15.8-1
 - Update to 5.15.8
 
