@@ -25,8 +25,8 @@ index 17e8f5e..666f500 100644
 +log4j.appender.logfile.maxFileSize=10240KB
 +log4j.appender.logfile.maxBackupIndex=10
  log4j.appender.logfile.append=true
- log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
- log4j.appender.logfile.layout.ConversionPattern=%d | %-5p | %m | %c | %t%n
+ log4j.appender.logfile.layout=org.apache.log4j.EnhancedPatternLayout
+ log4j.appender.logfile.layout.ConversionPattern=%d | %-5p | %m | %c | %t%n%throwable{full}
 @@ -75,4 +78,4 @@ log4j.appender.audit.maxFileSize=1024KB
  log4j.appender.audit.maxBackupIndex=5
  log4j.appender.audit.append=true

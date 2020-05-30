@@ -6,7 +6,7 @@
 %define __provides_exclude_from ^.*\\.jar$
 
 Name:           activemq-dist
-Version:        5.15.12
+Version:        5.15.13
 Release:        1%{?dist}
 Summary:        ActiveMQ Messaging Broker
 Group:          Networking/Daemons
@@ -54,7 +54,6 @@ mkdir -p $RPM_BUILD_ROOT%{amqhome}
 mv bin lib webapps $RPM_BUILD_ROOT%{amqhome}
 
 mkdir -p $RPM_BUILD_ROOT/usr/bin
-ln -s %{amqhome}/bin/activemq-admin $RPM_BUILD_ROOT/usr/bin/activemq-admin
 ln -s %{amqhome}/bin/activemq       $RPM_BUILD_ROOT/usr/bin/activemq
 
 # Disable Java RMI
@@ -62,7 +61,9 @@ sed -i 's/^ACTIVEMQ_SUNJMX_START=/#ACTIVEMQ_SUNJMX_START=/' $RPM_BUILD_ROOT%{amq
 
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 mv conf $RPM_BUILD_ROOT%{_sysconfdir}/activemq
+mv $RPM_BUILD_ROOT%{amqhome}/bin/env $RPM_BUILD_ROOT%{_sysconfdir}/activemq/env
 ln -s %{_sysconfdir}/activemq $RPM_BUILD_ROOT%{amqhome}/conf
+ln -s %{_sysconfdir}/activemq/env $RPM_BUILD_ROOT%{amqhome}/bin/env
 
 # Fix default connections
 sed -i 's_\(<transportConnector.*/>\)_<!--\1-->_' \
@@ -128,7 +129,7 @@ getent passwd %{project} >/dev/null || \
 %systemd_preun activemq.service
 
 %postun
-%systemd_postun activemq.service
+%systemd_postun_with_restart activemq.service
 
 
 %files
@@ -137,7 +138,6 @@ getent passwd %{project} >/dev/null || \
 %{amqhome}*
 %{_unitdir}/activemq.service
 /usr/bin/activemq
-/usr/bin/activemq-admin
 %config(noreplace) %{_sysconfdir}/activemq.conf
 %config(noreplace) %{_sysconfdir}/activemq
 %attr(755,activemq,activemq) %dir /var/log/activemq
@@ -150,6 +150,13 @@ getent passwd %{project} >/dev/null || \
 %{_javadir}
 
 %changelog
+* Sat May 30 2020 Lars Kiesow <lkiesow@uos.de> - 5.15.13-1
+- Update to 5.15.13
+- Fixed issue with log patch
+- Ensure `env` is available as configuration to e.g. set memory options
+- Removed link to non-existing activemq-admin
+- Fix restart after update
+
 * Sun Mar 22 2020 Lars Kiesow <lkiesow@uos.de> - 5.15.12-1
 - Update to 5.15.12
 
