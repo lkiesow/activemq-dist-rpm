@@ -6,13 +6,13 @@
 %define __provides_exclude_from ^.*\\.jar$
 
 Name:           activemq-dist
-Version:        5.15.14
+Version:        5.16.3
 Release:        1%{?dist}
 Summary:        ActiveMQ Messaging Broker
 Group:          Networking/Daemons
 License:        ASL 2.0
 URL:            http://activemq.apache.org/
-Source0:        https://mirror.synyx.de/apache//activemq/%{version}/%{pkgname}-%{version}-bin.tar.gz
+Source0:        https://dlcdn.apache.org//activemq/%{version}/apache-activemq-%{version}-bin.tar.gz
 Source1:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq-conf
 Source2:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq.service
 Source3:        https://raw.githubusercontent.com/lkiesow/activemq-dist-rpm/master/activemq.logrotate
@@ -150,6 +150,9 @@ getent passwd %{project} >/dev/null || \
 %{_javadir}
 
 %changelog
+* Sun Dec 12 2021 Lars Kiesow <lkiesow@uos.de> - 5.16.3-1
+- Update to 5.16.3
+
 * Thu Dec 17 2020 Lars Kiesow <lkiesow@uos.de> - 5.15.14-1
 - Update to 5.15.14
 
